@@ -184,8 +184,6 @@ private:
 
   TwoWire * _wire;
 
-  bool     _debug = false;
-
   int8_t   _writeProtectPin = -1;
   bool     _autoWriteProtect = EN_AUTO_WRITE_PROTECT;
 

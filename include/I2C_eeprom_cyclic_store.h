@@ -168,12 +168,14 @@ public:
         }
 
         auto buffer_length = sizeof(_currentVersion) + sizeof(T);
-        uint8_t tmp[buffer_length];
+        uint8_t *tmp = (uint8_t *) malloc(buffer_length);
 
         memcpy(tmp, &_currentVersion, sizeof(_currentVersion));
         memcpy(tmp + sizeof(_currentVersion), buffer, sizeof(T));
 
         auto success = _eeprom->writeBlock(_currentSlot * _bufferPages * _pageSize, tmp, buffer_length) == 0;
+
+        free(tmp);
 
         if (success)
             _isEmpty = false;
